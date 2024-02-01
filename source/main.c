@@ -14,11 +14,15 @@ int main(int argc, char* argv[])
         {
             Result res;
             WebCommonConfig cfg;
+
             res = webPageCreate(&cfg, "https://youtube.com");
 
             if(R_SUCCEEDED(res))
             {
+                res = webConfigSetFooter(&cfg, false);
+                res = webConfigSetPageCache(&cfg, true);
                 res = webConfigSetWhitelist(&cfg, "^http*");
+                res = webConfigSetUserAgentAdditionalString(&cfg, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36");
 
                 if(R_SUCCEEDED(res))
                 {
